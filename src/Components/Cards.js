@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Cardsdata from './CardsData';
 import { useDispatch } from 'react-redux';
-import ADD from '../Redux/Actions/Action';
+import {ADD} from '../Redux/Actions/Action';
 
 export default function Cards() {
 
