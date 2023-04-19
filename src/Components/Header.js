@@ -18,6 +18,7 @@ export default function Header() {
     
 
   const getdata = useSelector((state) => state.CartReducer.carts)
+  console.log(getdata)
   const dispatch = useDispatch();
 
    
