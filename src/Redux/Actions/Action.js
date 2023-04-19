@@ -6,6 +6,7 @@ export const ADD = (item) => {
     }
 }
 
+
 // remove iteams
 export const DLT = (id) => {
     return {
@@ -13,5 +14,3 @@ export const DLT = (id) => {
         payload: id
     }
 }
-
-

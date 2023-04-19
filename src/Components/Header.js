@@ -1,28 +1,26 @@
-import React, { useEffect, useState, useRef } from 'react';
+import Badge from '@mui/material/Badge';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Grow from '@mui/material/Grow';
+import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
+import Paper from '@mui/material/Paper';
+import Popper from '@mui/material/Popper';
+import React, { useEffect, useRef, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Badge from '@mui/material/Badge';
-
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Grow from '@mui/material/Grow';
-import Paper from '@mui/material/Paper';
-import Popper from '@mui/material/Popper';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
-
-
-
+import { useSelector,useDispatch } from 'react-redux';
+import Table from 'react-bootstrap/esm/Table';
+import { DLT } from '../Redux/Actions/Action';
 export default function Header() {
 
-    const [data,setdata] = useState()
+    
 
-    const d = useSelector((state) => state.carts)
+  const getdata = useSelector((state) => state.CartReducer.carts)
+  const dispatch = useDispatch();
 
-    console.log("gdfgdf"+JSON.stringify(d))
+   
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
   
@@ -58,6 +56,9 @@ export default function Header() {
     }, [open]);
   
    
+    const dlt = (id)=>{
+      dispatch(DLT(id))
+  }
 
 
   return (
@@ -71,7 +72,7 @@ export default function Header() {
            <NavLink to='/cartdetails' className="text-decoration-none text-light">CardDetails</NavLink> 
           </Nav>
         
-          <Badge badgeContent={4} color="primary"   ref={anchorRef}
+          <Badge badgeContent={getdata.length} color="primary"   ref={anchorRef}
           id="composition-button"
           aria-controls={open ? 'composition-menu' : undefined}
           aria-expanded={open ? 'true' : undefined}
@@ -98,7 +99,49 @@ export default function Header() {
                   placement === 'bottom-start' ? 'left top' : 'left bottom',
               }}
             >
-              <Paper>
+              {
+                getdata.length ? 
+                <div className='card_details' style={{width:"24rem",padding:10}}>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>Restaurant Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                getdata.map((e)=>{
+                                    return (
+                                        <>
+                                            <tr>
+                                                <td>
+                                                <NavLink to={`/cart/${e.id}`}   onClick={handleClose}>
+                                                <img src={e.imgdata} style={{width:"5rem",height:"5rem"}} alt="" />
+                                                </NavLink>   
+                                                </td>
+                                                <td>
+                                                    <p>{e.rname}</p>
+                                                    <p>Price : ₹{e.price}</p>
+                                                    <p>Quantity : {e.qnty}</p>
+                                                    <p style={{color:"red",fontSize:20,cursor:"pointer"}} onClick={()=>dlt(e.id)}>
+                                                        <i className='fas fa-trash smalltrash'></i>
+                                                    </p>
+                                                </td>
+
+                                                <td className='mt-5'style={{color:"red",fontSize:20,cursor:"pointer"}} onClick={()=>dlt(e.id)}>
+                                                <i className='fas fa-trash largetrash'></i>
+                                                </td>
+                                            </tr>
+                                        </>
+                                    )
+                                })
+                            }
+                            <p className='text-center'>Total :₹ 500</p>
+                        </tbody>
+                    </Table>
+                </div>:  
+                <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
                     autoFocusItem={open}
@@ -116,6 +159,8 @@ export default function Header() {
                 </ClickAwayListener>
               </Paper>
 
+              }
+              
 
 
              
