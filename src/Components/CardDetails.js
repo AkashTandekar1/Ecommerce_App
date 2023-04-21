@@ -1,11 +1,12 @@
 import React from 'react'
-import Table from 'react-bootstrap/Table'
-import { DLT,ADD,REMOVE } from '../Redux/Actions/Action';
-import { useSelector,useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import Table from 'react-bootstrap/Table'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+
+import { ADD, DLT, REMOVE } from '../Redux/Actions/Action';
 
 export default function CardDetails() {
 
@@ -15,7 +16,7 @@ export default function CardDetails() {
   // console.log(data);
 
   const {id} = useParams();
-  // console.log(id);
+  console.log("dgdfg"+id);
 
   const history = useNavigate();
 
@@ -59,7 +60,7 @@ const remove = (item)=>{
 
   return (
     <div className="container mt-2">
-    <h2 className='text-center'>Iteams Details Page
+    <h2 className='text-center'>Items Details Page
     </h2>
 
     <section className='container mt-3'>

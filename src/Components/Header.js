@@ -7,12 +7,18 @@ import Paper from '@mui/material/Paper';
 import Popper from '@mui/material/Popper';
 import React, { useEffect, useRef, useState } from 'react';
 import Container from 'react-bootstrap/Container';
+import Table from 'react-bootstrap/esm/Table';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { useSelector,useDispatch } from 'react-redux';
-import Table from 'react-bootstrap/esm/Table';
+import StripeCheckout from 'react-stripe-checkout';
+import {loadStripe} from '@stripe/stripe-js';
 import { DLT } from '../Redux/Actions/Action';
+import {
+Elements  
+} from '@stripe/react-stripe-js';
+import Paymentgateway from './Paymentgateway';
 export default function Header() {
 
     
@@ -21,7 +27,7 @@ export default function Header() {
   console.log(getdata)
   const dispatch = useDispatch();
 
-   
+  const stripePromise = loadStripe('pk_test_51MzI9tSDsFvXK5oeoL5zoyqvWb80mVuR7CQgS2M7WXpkwyj6QTgzgJKx8eJEzrBbCuInv9llem4T2rVEeZDE3k1700aIKhGR9T');
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
   
@@ -70,7 +76,7 @@ export default function Header() {
           <Navbar.Brand href="#home">Shopping app</Navbar.Brand>
           <Nav className="me-auto">
           <NavLink to='/' className="text-decoration-none text-light mx-3" >Home</NavLink> 
-           <NavLink to='/cartdetails' className="text-decoration-none text-light">CardDetails</NavLink> 
+           {/* <NavLink to='/cartdetails' className="text-decoration-none text-light">CardDetails</NavLink>  */}
           </Nav>
         
           <Badge badgeContent={getdata.length} color="primary"   ref={anchorRef}
@@ -117,7 +123,7 @@ export default function Header() {
                                         <>
                                             <tr>
                                                 <td>
-                                                <NavLink to={`/cart/${e.id}`}   onClick={handleClose}>
+                                                <NavLink to={`/cartdetails/${e.id}`}   onClick={handleClose}>
                                                 <img src={e.imgdata} style={{width:"5rem",height:"5rem"}} alt="" />
                                                 </NavLink>   
                                                 </td>
@@ -133,6 +139,15 @@ export default function Header() {
                                                 <td className='mt-5'style={{color:"red",fontSize:20,cursor:"pointer"}} onClick={()=>dlt(e.id)}>
                                                 <i className='fas fa-trash largetrash'></i>
                                                 </td>
+                                            </tr>
+                                            <tr>
+                                                <td className='text-center'>
+                                                <Elements stripe={stripePromise}>
+                                                <Paymentgateway/>
+                                                      </Elements>
+                                                 
+                                                  
+                                                  </td>
                                             </tr>
                                         </>
                                     )
