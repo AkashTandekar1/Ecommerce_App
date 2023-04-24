@@ -1,45 +1,20 @@
 import React from "react";
-// import StripeCheckout from "react-stripe-checkout";
-import {
-  CardElement,
-  useStripe,
-  useElements,
-} from '@stripe/react-stripe-js';
+import StripeCheckout from 'react-stripe-checkout';
 
-
-
-export default function Paymentgateway() {
+export default function Paymentgateway({totaldata}) {
   
-
-    const stripe = useStripe();
-    const elements = useElements();
-  
-    const handleSubmit = async (event) => {
-      event.preventDefault();
-  
-      if (elements == null) {
-        return;
-      }
-  
-      const {error, paymentMethod} = await stripe.createPaymentMethod({
-        type: 'card',
-        card: elements.getElement(CardElement),
-      });
-    };
+  const onToken = (token) => {
+     console.log(token)
+  }
   
 
   return (
     <div>
-      {/* <StripeCheckout token={onToken} name="Online shopping store"
-       currency="Inr" amount={200} stripeKey="pk_test_51MzI9tSDsFvXK5oeoL5zoyqvWb80mVuR7CQgS2M7WXpkwyj6QTgzgJKx8eJEzrBbCuInv9llem4T2rVEeZDE3k1700aIKhGR9T">
-      </StripeCheckout> */}
-
-<form onSubmit={handleSubmit}>
-      <CardElement />
-      <button type="submit" disabled={!stripe || !elements}>
-        Pay
-      </button>
-    </form>
+               <StripeCheckout name={totaldata} 
+        token={onToken}
+        stripeKey="pk_test_51MzI9tSDsFvXK5oeoL5zoyqvWb80mVuR7CQgS2M7WXpkwyj6QTgzgJKx8eJEzrBbCuInv9llem4T2rVEeZDE3k1700aIKhGR9T"
+      /> 
+             
     </div>
   );
 }

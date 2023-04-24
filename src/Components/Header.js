@@ -12,13 +12,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import StripeCheckout from 'react-stripe-checkout';
-import {loadStripe} from '@stripe/stripe-js';
+
 import { DLT } from '../Redux/Actions/Action';
-import {
-Elements  
-} from '@stripe/react-stripe-js';
 import Paymentgateway from './Paymentgateway';
+
 export default function Header() {
 
     
@@ -27,7 +24,7 @@ export default function Header() {
   console.log(getdata)
   const dispatch = useDispatch();
 
-  const stripePromise = loadStripe('pk_test_51MzI9tSDsFvXK5oeoL5zoyqvWb80mVuR7CQgS2M7WXpkwyj6QTgzgJKx8eJEzrBbCuInv9llem4T2rVEeZDE3k1700aIKhGR9T');
+  
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
   
@@ -142,11 +139,7 @@ export default function Header() {
                                             </tr>
                                             <tr>
                                                 <td className='text-center'>
-                                                <Elements stripe={stripePromise}>
-                                                <Paymentgateway/>
-                                                      </Elements>
-                                                 
-                                                  
+                                                  <Paymentgateway totaldata={e.total}/>
                                                   </td>
                                             </tr>
                                         </>

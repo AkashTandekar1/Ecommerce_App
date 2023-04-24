@@ -25,26 +25,7 @@ export const CartReducer = (state = INIT_STATE, action) => {
       }
 
       
-      case "RMV_ONE":
-        const IteamIndex_dec = state.carts.findIndex((iteam)=> iteam.id === action.payload.id);
-
-        if(state.carts[IteamIndex_dec].qnty >= 1){
-            const dltiteams = state.carts[IteamIndex_dec].qnty -= 1
-            console.log([...state.carts,dltiteams]);
-
-            return {
-                ...state,
-                carts:[...state.carts]
-            }
-        }else if(state.carts[IteamIndex_dec].qnty === 1 ){
-            const data = state.carts.filter((el)=>el.id !== action.payload);
-
-            return {
-                ...state,
-                carts:data
-            }
-        }
-
+     
       
       case "RMV_CART":
         const data = state.carts.filter((el)=>el.id !== action.payload); 
@@ -56,6 +37,26 @@ export const CartReducer = (state = INIT_STATE, action) => {
         }
      
 
+        case "RMV_ONE":
+          const IteamIndex_dec = state.carts.findIndex((iteam)=> iteam.id === action.payload.id);
+  
+          if(state.carts[IteamIndex_dec].qnty >= 1){
+              const dltiteams = state.carts[IteamIndex_dec].qnty -= 1
+              console.log([...state.carts,dltiteams]);
+  
+              return {
+                  ...state,
+                  carts:[...state.carts]
+              }
+          }else if(state.carts[IteamIndex_dec].qnty === 1 ){
+              const data = state.carts.filter((el)=>el.id !== action.payload);
+  
+              return {
+                  ...state,
+                  carts:data
+              }
+          }
+  
     
     default:
       return state;
