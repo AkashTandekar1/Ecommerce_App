@@ -12,10 +12,11 @@ function App() {
   return (
     <div>
       <Header />
-      <Emailtesting />
+      {/* <Emailtesting /> */}
       <Routes>
         <Route path="/" element={<Cards />}></Route>
         <Route path="/cartdetails/:id" element={<CardDetails />}></Route>
+        {/* <Route path="/emailtesting" element={<Emailtesting/>}></Route> */}
       </Routes>
     </div>
   );

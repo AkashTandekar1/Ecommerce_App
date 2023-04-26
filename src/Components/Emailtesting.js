@@ -1,42 +1,56 @@
 import emailjs from "@emailjs/browser";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Emailtesting() {
   // const form = useRef();
+
+  const [data, setData] = useState({
+    name: "Akash",
+    email: "tandekarakash6@gmail.com",
+    message: "Hello Akash ",
+  });
 
   const sendEmail = (e) => {
     e.preventDefault();
 
     emailjs
-      .sendForm(
-        "service_vl86f3q",
-        "template_20oc7bu",
-        values.current,
-        "tLBGSuno4d_1ZDUoW"
-      )
+      .send("service_vl86f3q", "template_20oc7bu", data, "tLBGSuno4d_1ZDUoW")
       .then(
         (result) => {
-          console.log(result.text);
+          console.log("Email sent successfully");
+          toast("Payment done Successfully!");
         },
         (error) => {
           console.log(error.text);
         }
       );
-
-    console.log("sdfsf");
   };
 
-  const values = {
-    name: "Akash",
-    email: "akashtandekar.uk1@gmail.com",
-    message: "Hi there",
-  };
+  try {
+    useEffect(() => {
+      sendEmail();
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  console.log("email testing getting called");
 
   return (
     <div>
-      <button ref={values} onClick={sendEmail}>
-        jjhjhgjkjb
-      </button>
+      <button onClick={sendEmail}>jjhjhgjkjb</button>
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 }
