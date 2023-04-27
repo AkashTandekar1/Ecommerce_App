@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
+import AbstractEmailTesting from "./Components/AbstractEmailTesting";
 import CardDetails from "./Components/CardDetails";
 import Cards from "./Components/Cards";
 import Emailtesting from "./Components/Emailtesting";
@@ -13,6 +14,7 @@ function App() {
     <div>
       <Header />
       {/* <Emailtesting /> */}
+      <AbstractEmailTesting/>
       <Routes>
         <Route path="/" element={<Cards />}></Route>
         <Route path="/cartdetails/:id" element={<CardDetails />}></Route>

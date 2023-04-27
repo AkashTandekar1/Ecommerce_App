@@ -22,6 +22,8 @@ export default function Paymentgateway() {
     //  history("/emailtesting");
 
     setSucess(true);
+
+    console.log("Akash tttt");
   };
 
   return (

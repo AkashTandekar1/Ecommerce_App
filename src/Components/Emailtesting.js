@@ -1,5 +1,6 @@
-import emailjs from "@emailjs/browser";
+import emailjs, { send } from "@emailjs/browser";
 import React, { useEffect, useRef, useState } from "react";
+import { useAccordionButton } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function Emailtesting() {
@@ -11,9 +12,7 @@ export default function Emailtesting() {
     message: "Hello Akash ",
   });
 
-  const sendEmail = (e) => {
-    e.preventDefault();
-
+  const sendEmail = () => {
     emailjs
       .send("service_vl86f3q", "template_20oc7bu", data, "tLBGSuno4d_1ZDUoW")
       .then(
@@ -27,18 +26,15 @@ export default function Emailtesting() {
       );
   };
 
-  try {
-    useEffect(() => {
-      sendEmail();
-    });
-  } catch (error) {
-    console.log(error);
-  }
+  useEffect(() => {
+    return sendEmail;
+  }, []);
+
   console.log("email testing getting called");
 
   return (
     <div>
-      <button onClick={sendEmail}>jjhjhgjkjb</button>
+      {/* <button onClick={sendEmail}>jjhjhgjkjb</button> */}
       <ToastContainer
         position="top-center"
         autoClose={1000}

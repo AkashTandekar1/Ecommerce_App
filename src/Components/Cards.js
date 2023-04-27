@@ -33,7 +33,7 @@ export default function Cards() {
       {Cardsdata.map((res, id) => {
         return (
           <div>
-            <Card
+            <Card key={id}
               style={{
                 width: "18rem",
                 margin: "20px",
