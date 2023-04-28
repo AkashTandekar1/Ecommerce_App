@@ -33,16 +33,19 @@ export default function Cards() {
       {Cardsdata.map((res, id) => {
         return (
           <div>
-            <Card key={id}
+            <Card
+              key={id}
               style={{
-                width: '22rem',border:"none"
-              }} 
+                width: "22rem",
+                border: "none",
+              }}
               className="mx-2 mt-4 card_style"
             >
               <Card.Img
                 variant="top"
                 src={res.imgdata}
-                style={{height:"16rem"}} className="mt-3"
+                style={{ height: "16rem" }}
+                className="mt-3"
               />
               <Card.Body>
                 <Card.Title>{res.rname}</Card.Title>

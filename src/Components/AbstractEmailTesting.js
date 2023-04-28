@@ -2,17 +2,9 @@ import React from "react";
 import { useState } from "react";
 
 export default function AbstractEmailTesting() {
-
-
-
-
   const [email, setEmail] = useState("akashtandekar.uk1@gmail.com");
-  const [subject, setSubject] = useState(
-    "Trying Abstract API email service"
-  );
-  const [body, setBody] = useState(
-    "Hello there"
-  );
+  const [subject, setSubject] = useState("Trying Abstract API email service");
+  const [body, setBody] = useState("Hello there");
 
   const apiKey = "YOUR_API_KEY";
   const apiURL =
@@ -28,34 +20,29 @@ export default function AbstractEmailTesting() {
   };
 
   const sendEmailValidationRequestChange = async (email) => {
-      try {
-          const response = await fetch(apiURL + '&email=' + email);
-          const data = await response.json();
-          const isValidSMTP = data.is_smtp_valid.value;
+    try {
+      const response = await fetch(apiURL + "&email=" + email);
+      const data = await response.json();
+      const isValidSMTP = data.is_smtp_valid.value;
 
-          if (isValidSMTP) {
-              // use the email address in the mailto link
-          } else {
-              // show the user an error
-          }
-      } catch (error) {
-          throw error;
+      if (isValidSMTP) {
+        // use the email address in the mailto link
+      } else {
+        // show the user an error
       }
-  }
+    } catch (error) {
+      throw error;
+    }
+  };
 
   return (
     <div>
-      <a href="mailto:`${email}`?subject=`${subject}`&body=`${body}`">Click to Send an Email</a>
+      <a href="mailto:`${email}`?subject=`${subject}`&body=`${body}`">
+        Click to Send an Email
+      </a>
     </div>
   );
 }
-
-
-
-
-
-
-
 
 // Expected outout after successfully mail get sent.
 
