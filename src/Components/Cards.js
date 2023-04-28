@@ -35,17 +35,14 @@ export default function Cards() {
           <div>
             <Card key={id}
               style={{
-                width: "18rem",
-                margin: "20px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-              }}
+                width: '22rem',border:"none"
+              }} 
+              className="mx-2 mt-4 card_style"
             >
               <Card.Img
                 variant="top"
                 src={res.imgdata}
-                style={{ height: "16rem" }}
+                style={{height:"16rem"}} className="mt-3"
               />
               <Card.Body>
                 <Card.Title>{res.rname}</Card.Title>

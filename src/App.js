@@ -3,18 +3,23 @@ import { Route, Routes } from "react-router-dom";
 import AbstractEmailTesting from "./Components/AbstractEmailTesting";
 import CardDetails from "./Components/CardDetails";
 import Cards from "./Components/Cards";
+import ChatbotAI from "./Components/ChatbotAI";
 import Emailtesting from "./Components/Emailtesting";
 import Header from "./Components/Header";
 
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Chatbotlatest from "./Components/Chatbotlatest";
 
 function App() {
   return (
     <div>
       <Header />
+  
+      {/* <ChatbotAI/> */}
       {/* <Emailtesting /> */}
-      <AbstractEmailTesting/>
+      {/* <AbstractEmailTesting/> */}
+      <Chatbotlatest/>
       <Routes>
         <Route path="/" element={<Cards />}></Route>
         <Route path="/cartdetails/:id" element={<CardDetails />}></Route>
