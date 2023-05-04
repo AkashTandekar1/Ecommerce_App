@@ -10,6 +10,7 @@ import Header from "./Components/Header";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Chatbotlatest from "./Components/Chatbotlatest";
+import Invoice from "./Components/Invoice";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/cartdetails/:id" element={<CardDetails />}></Route>
         {/* <Route path="/emailtesting" element={<Emailtesting/>}></Route> */}
       </Routes>
+      <Invoice/>
     </div>
   );
 }
