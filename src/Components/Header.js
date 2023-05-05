@@ -12,15 +12,23 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { useReactToPrint } from 'react-to-print';
 import { toast, ToastContainer } from "react-toastify";
 
 import { DLT } from "../Redux/Actions/Action";
+import Invoice from "./Invoice";
 import Paymentgateway from "./Paymentgateway";
 
 export default function Header() {
   const getdata = useSelector((state) => state.CartReducer.carts);
   console.log(getdata);
   const dispatch = useDispatch();
+
+  const componentRef = useRef();
+
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
@@ -60,6 +68,17 @@ export default function Header() {
     dispatch(DLT(id));
     toast("Item Deleted!");
   };
+  
+  const HandlePrintone = () => {
+    useReactToPrint({
+      content: () => componentRef.current,
+    })
+
+    // return (
+    //   <Invoice ref={componentRef}/>
+    // )
+  }
+
 
   return (
     <div>
@@ -70,7 +89,31 @@ export default function Header() {
             <NavLink to="/" className="text-decoration-none text-light mx-3">
               Home
             </NavLink>
+            <Nav className="text-decoration-none text-light mx-3">
+               {/* <ReactToPrint 
+               trigger={() => {
+                return <div>Click here to print</div>
+               }}
+               content={() => componentRef}
+
+               documentTitle="new document"
+               pageStyle={"print"}
+               onAfterPrint={() => {
+                console.log("document printed")
+
+               }}
+               /> */}
+               <div style={{display: "none"}}>
+               <Invoice ref={componentRef}/> 
+               </div>
+               <div onClick={HandlePrintone}>Click here to print</div>
+             
+               {/* <div onClick={HandlePrintone}>click here to print</div>
+               
+
+            
             {/* <NavLink to='/cartdetails' className="text-decoration-none text-light">CardDetails</NavLink>  */}
+            </Nav>
           </Nav>
 
           <Badge

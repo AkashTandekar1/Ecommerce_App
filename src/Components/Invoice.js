@@ -1,16 +1,19 @@
-import React from "react";
-import "./Invoiceapp.css";
+import React, { useRef } from 'react';
 import { useSelector } from "react-redux";
+
+import "./Invoiceapp.css";
 
 export default function Invoice() {
 
-  
+    // const componentRef = useRef();
     const getdata = useSelector((state) => state.CartReducer.carts);
     console.log(getdata)
 
+    
   return (
     <div>
       
+      {/* <div class="invoice-box" ref={el => (componentRef = el)}> */}
       <div class="invoice-box">
         <table cellpadding="0" cellspacing="0">
           <tr class="top">
@@ -27,7 +30,7 @@ export default function Invoice() {
                   <td>
                  Invoice #: 123
                     <br />
-                   Created: May 4, 2023
+                   Created: May 5, 2023
                     <br />
                      
                   </td>
