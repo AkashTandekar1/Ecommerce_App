@@ -24,6 +24,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Cards />}></Route>
         <Route path="/cartdetails/:id" element={<CardDetails />}></Route>
+        <Route path="/invoice" element={<Invoice />}></Route>
         {/* <Route path="/emailtesting" element={<Emailtesting/>}></Route> */}
       </Routes>
       {/* <Invoice/> */}

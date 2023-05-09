@@ -33,11 +33,13 @@ export default function Cards() {
       {Cardsdata.map((res, id) => {
         return (
           <div>
+            <div style={{display: "flex",flexDirection: "row"}}>
             <Card
               key={id}
               style={{
                 width: "22rem",
                 border: "none",
+                
               }}
               className="mx-2 mt-4 card_style"
             >
@@ -55,6 +57,8 @@ export default function Cards() {
                 </Button>
               </Card.Body>
             </Card>
+          
+          </div>
             <ToastContainer
               position="top-center"
               autoClose={1000}
@@ -70,6 +74,7 @@ export default function Cards() {
           </div>
         );
       })}
+      
     </div>
   );
 }

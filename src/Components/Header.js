@@ -12,16 +12,19 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { useReactToPrint } from 'react-to-print';
+import { useReactToPrint } from "react-to-print";
 import { toast, ToastContainer } from "react-toastify";
 
 import { DLT } from "../Redux/Actions/Action";
 import Invoice from "./Invoice";
 import Paymentgateway from "./Paymentgateway";
+import Cards from "./Cards";
 
 export default function Header() {
   const getdata = useSelector((state) => state.CartReducer.carts);
   console.log(getdata);
+
+  const [price, setPrice] = useState(0);
   const dispatch = useDispatch();
 
   const componentRef = useRef();
@@ -68,17 +71,28 @@ export default function Header() {
     dispatch(DLT(id));
     toast("Item Deleted!");
   };
-  
-  const HandlePrintone = () => {
-    useReactToPrint({
-      content: () => componentRef.current,
-    })
 
-    // return (
-    //   <Invoice ref={componentRef}/>
-    // )
-  }
+  // const HandlePrintone = () => {
+  //   useReactToPrint({
+  //     content: () => componentRef.current,
+  //   })
 
+  //   return (
+  //     <Invoice ref={componentRef}/>
+  //   )
+  // }
+
+  const total = () => {
+    let price = 0;
+    getdata.map((ele, k) => {
+      price = ele.price * ele.qnty + price;
+    });
+    setPrice(price);
+  };
+
+  useEffect(() => {
+    total();
+  }, [total]);
 
   return (
     <div>
@@ -89,8 +103,15 @@ export default function Header() {
             <NavLink to="/" className="text-decoration-none text-light mx-3">
               Home
             </NavLink>
-            <Nav className="text-decoration-none text-light mx-3">
-               {/* <ReactToPrint 
+
+            <NavLink
+              to="/invoice"
+              className="text-decoration-none text-light mx-3"
+            >
+              Invoice
+            </NavLink>
+
+            {/* <ReactToPrint 
                trigger={() => {
                 return <div>Click here to print</div>
                }}
@@ -103,17 +124,14 @@ export default function Header() {
 
                }}
                /> */}
-               <div style={{display: "none"}}>
+            {/* <div style={{display: "none"}}>
                <Invoice ref={componentRef}/> 
                </div>
-               <div onClick={HandlePrintone}>Click here to print</div>
-             
-               {/* <div onClick={HandlePrintone}>click here to print</div>
-               
+               <div onClick={HandlePrintone}>Click here to print</div> */}
 
-            
-            {/* <NavLink to='/cartdetails' className="text-decoration-none text-light">CardDetails</NavLink>  */}
-            </Nav>
+            {/* <div onClick={HandlePrintone}>click here to print</div> */}
+
+            {/* <NavLink to='/cartdetails' className="text-decoration-none text-light">CardDetails</NavLink>   */}
           </Nav>
 
           <Badge
@@ -207,12 +225,12 @@ export default function Header() {
                                 <i className="fas fa-trash largetrash"></i>
                               </td>
                             </tr>
-                            <tr>
+                            {/* <tr>
                               <td className="text-center">
                                 <Paymentgateway />
                               </td>
-                            </tr>
-                            <ToastContainer
+                            </tr> */}
+                            {/* <ToastContainer
                               position="top-center"
                               autoClose={1000}
                               hideProgressBar={false}
@@ -223,11 +241,12 @@ export default function Header() {
                               draggable
                               pauseOnHover
                               theme="light"
-                            />
+                            /> */}
                           </>
                         );
                       })}
-                      <p className="text-center">Total :₹ 500</p>
+                      <p className="text-center">Total :₹ {price}</p>
+                      <Paymentgateway />
                     </tbody>
                   </Table>
                 </div>
@@ -257,6 +276,7 @@ export default function Header() {
           )}
         </Popper>
       </Navbar>
+      
     </div>
   );
 }
