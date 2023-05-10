@@ -16,11 +16,11 @@ function App() {
   return (
     <div>
       <Header />
-  
+
       {/* <ChatbotAI/> */}
       {/* <Emailtesting /> */}
       {/* <AbstractEmailTesting/> */}
-      <Chatbotlatest/>
+      <Chatbotlatest />
       <Routes>
         <Route path="/" element={<Cards />}></Route>
         <Route path="/cartdetails/:id" element={<CardDetails />}></Route>

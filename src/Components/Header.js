@@ -276,7 +276,6 @@ export default function Header() {
           )}
         </Popper>
       </Navbar>
-      
     </div>
   );
 }
