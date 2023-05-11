@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
-import { useSelector } from "react-redux";
-import { Button } from "react-bootstrap";
-import ReactToPrint from "react-to-print";
-import "./Invoiceapp.css";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Button } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import ReactToPrint from "react-to-print";
+
+import "./Invoiceapp.css";
+
 export default function Invoice() {
   let componentRef = useRef();
   const getdata = useSelector((state) => state.CartReducer.carts);
@@ -26,7 +28,6 @@ export default function Invoice() {
 
   return (
     <div>
-      {/* <div class="invoice-box" ref={el => (componentRef = el)}> */}
       <div
         style={{ display: "flex", justifyContent: "end", margin: "20px 20px" }}
       >

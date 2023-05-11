@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 
 import Emailtesting from "./Emailtesting";
 
 export default function Paymentgateway() {
-  // const history = useNavigate();
   const [carddata, setcardData] = useState(null);
   const [success, setSucess] = useState(false);
 
@@ -18,8 +16,6 @@ export default function Paymentgateway() {
 
     setcardData(funding);
     console.log("After destructure" + JSON.stringify(funding));
-
-    //  history("/emailtesting");
 
     setSucess(true);
 

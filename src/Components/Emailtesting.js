@@ -4,8 +4,6 @@ import { useAccordionButton } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
 
 export default function Emailtesting() {
-  // const form = useRef();
-
   const [data, setData] = useState({
     name: "Akash",
     email: "tandekarakash6@gmail.com",
@@ -34,7 +32,6 @@ export default function Emailtesting() {
 
   return (
     <div>
-      {/* <button onClick={sendEmail}>jjhjhgjkjb</button> */}
       <ToastContainer
         position="top-center"
         autoClose={1000}

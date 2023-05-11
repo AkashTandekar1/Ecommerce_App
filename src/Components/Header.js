@@ -13,12 +13,10 @@ import Navbar from "react-bootstrap/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
-import { toast, ToastContainer } from "react-toastify";
-
+import { toast } from "react-toastify";
 import { DLT } from "../Redux/Actions/Action";
-import Invoice from "./Invoice";
 import Paymentgateway from "./Paymentgateway";
-import Cards from "./Cards";
+import zIndex from "@mui/material/styles/zIndex";
 
 export default function Header() {
   const getdata = useSelector((state) => state.CartReducer.carts);
@@ -57,7 +55,6 @@ export default function Header() {
     }
   }
 
-  // return focus to the button when we transitioned from !open -> open
   const prevOpen = useRef(open);
   useEffect(() => {
     if (prevOpen.current === true && open === false) {
@@ -71,16 +68,6 @@ export default function Header() {
     dispatch(DLT(id));
     toast("Item Deleted!");
   };
-
-  // const HandlePrintone = () => {
-  //   useReactToPrint({
-  //     content: () => componentRef.current,
-  //   })
-
-  //   return (
-  //     <Invoice ref={componentRef}/>
-  //   )
-  // }
 
   const total = () => {
     let price = 0;
@@ -110,28 +97,6 @@ export default function Header() {
             >
               Invoice
             </NavLink>
-
-            {/* <ReactToPrint 
-               trigger={() => {
-                return <div>Click here to print</div>
-               }}
-               content={() => componentRef}
-
-               documentTitle="new document"
-               pageStyle={"print"}
-               onAfterPrint={() => {
-                console.log("document printed")
-
-               }}
-               /> */}
-            {/* <div style={{display: "none"}}>
-               <Invoice ref={componentRef}/> 
-               </div>
-               <div onClick={HandlePrintone}>Click here to print</div> */}
-
-            {/* <div onClick={HandlePrintone}>click here to print</div> */}
-
-            {/* <NavLink to='/cartdetails' className="text-decoration-none text-light">CardDetails</NavLink>   */}
           </Nav>
 
           <Badge
@@ -170,8 +135,7 @@ export default function Header() {
             >
               {getdata.length ? (
                 <div
-                  className="card_details"
-                  style={{ width: "24rem", padding: 10 }}
+                  style={{ width: "24rem", padding: 10, zIndex: '999 !important'}}
                 >
                   <Table>
                     <thead>
@@ -225,23 +189,6 @@ export default function Header() {
                                 <i className="fas fa-trash largetrash"></i>
                               </td>
                             </tr>
-                            {/* <tr>
-                              <td className="text-center">
-                                <Paymentgateway />
-                              </td>
-                            </tr> */}
-                            {/* <ToastContainer
-                              position="top-center"
-                              autoClose={1000}
-                              hideProgressBar={false}
-                              newestOnTop={false}
-                              closeOnClick
-                              rtl={false}
-                              pauseOnFocusLoss
-                              draggable
-                              pauseOnHover
-                              theme="light"
-                            /> */}
                           </>
                         );
                       })}

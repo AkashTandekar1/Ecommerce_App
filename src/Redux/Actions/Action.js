@@ -5,7 +5,6 @@ export const ADD = (item) => {
   };
 };
 
-// remove iteams
 export const DLT = (id) => {
   return {
     type: "RMV_CART",

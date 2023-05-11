@@ -11,7 +11,6 @@ import { ADD, DLT, REMOVE } from "../Redux/Actions/Action";
 
 export default function CardDetails() {
   const [data, setData] = useState([]);
-  // console.log(data);
 
   const { id } = useParams();
   console.log("dgdfg" + id);
@@ -21,7 +20,6 @@ export default function CardDetails() {
   const dispatch = useDispatch();
 
   const getdata = useSelector((state) => state.CartReducer.carts);
-  // console.log(getdata);
 
   const compare = () => {
     let comparedata = getdata.filter((e) => {
@@ -30,10 +28,7 @@ export default function CardDetails() {
     setData(comparedata);
   };
 
-  // add data
-
   const send = (e) => {
-    // console.log(e);
     dispatch(ADD(e));
     toast("Item has been added in the cart!");
   };
@@ -44,7 +39,6 @@ export default function CardDetails() {
     history("/");
   };
 
-  // remove one
   const remove = (item) => {
     dispatch(REMOVE(item));
     toast("Item Deleted!");
